@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: service-order
+
+  profiles:
+
+    active: dev
+    include: feign
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      config:
+        namespace: ${spring.profiles.active:dev}
+
+logging:
+  level:
+    org.example.feign: DEBUG
+
+
+server:
+  port: 8095
+---
+spring:
+  config:
+    import:
+      - nacos:common.properties?group=order
+      - nacos:database.properties?group=order
+    activate:
+      on-profile: dev
+
+---
+spring:
+  config:
+    import:
+      - nacos:common.properties?group=order
+      - nacos:database.properties?group=order
+    activate:
+      on-profile: prob
+
+---
+spring:
+  config:
+    import:
+      - nacos:common.properties?group=order
+      - nacos:database.properties?group=order
+    activate:
+      on-profile: test
+

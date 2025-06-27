@@ -1,0 +1,4 @@
+# 项目排除路径
+/model/target/
+/services/service-order/target/
+/services/service-product/target/
